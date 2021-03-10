@@ -3,6 +3,7 @@ import picodisplay
 import json
 
 class FileManage:
+    """Open and save json file to create persistance between power cycles"""
     def __init__(self, fn, interval):
         self.filename = fn + "_intervals.json"
         self.default_times = {"led_key": interval, "lcd_key": interval}
@@ -26,6 +27,7 @@ class FileManage:
         return open_file
 
 class LCD:
+    """Define states for the Pimoroni Pack and call them."""
     def flash_monday():
         picodisplay.set_pen(128, 128, 128)                  
         picodisplay.clear()                              
@@ -44,7 +46,9 @@ class LCD:
         picodisplay.text("Its Monday!", 5, 50, 240, 5)
         picodisplay.update()
         
-class Blink:    
+class Blink:
+    """Blink without delay"""
+    
     def __init__(self):
         self.thing_switch_time = time.ticks_ms()
         self.state = False
@@ -89,3 +93,4 @@ class Buttons:
                 self.lcd_int -= 50
             print("LCD INT: " + str(self.lcd_int))
             return self.lcd_int
+
